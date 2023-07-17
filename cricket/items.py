@@ -6,10 +6,12 @@
 import scrapy
 
 
-class Headline(scrapy.Item):
+class Cricket(scrapy.Item):
     """
     ニュースのヘッドラインを表すItem。
     """
 
-    title = scrapy.Field()
-    body = scrapy.Field()
+    linked_information = scrapy.Field()
+    article_body = scrapy.Field()
+    nickname = scrapy.Field()
+    description = scrapy.Field()

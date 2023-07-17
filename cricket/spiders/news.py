@@ -9,6 +9,8 @@ from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import Select
 
+from cricket.items import Cricket
+
 class NewsSpider(scrapy.Spider):
     name = "news"
     # allowed_domains = ['news.yahoo.co.jp']  # クロール対象とするドメインのリスト。
@@ -92,14 +94,18 @@ class NewsSpider(scrapy.Spider):
         """
         トップページのトピックス一覧から個々のトピックスへのリンクを抜き出して表示する。
         """
-        linked_information = response.xpath('//a/@href').extract()
-        body = response.css('span::text').extract()
-        yield {'linked_information': linked_information, 'article_body': body}
+        item = Cricket()
+        item['linked_information'] = response.xpath('//a/@href').extract()
+        item['article_body'] = response.css('span::text').extract()
+
+        yield item
 
     def parse_profile(self, response):
         """
         トップページのトピックス一覧から個々のトピックスへのリンクを抜き出して表示する。
         """
-        nickname = response.css('p#pfofileNickname::text').extract()
-        description = response.css('p#pfofileDescription::text').extract()
-        yield {'nickname': nickname, 'description': description}
+        item = Cricket()
+        item['nickname'] = response.css('p#pfofileNickname::text').extract()
+        item['description'] = response.css('p#pfofileDescription::text').extract()
+
+        yield item
