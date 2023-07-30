@@ -62,9 +62,17 @@ DOWNLOAD_DELAY = 3
 
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
-#ITEM_PIPELINES = {
-#    "myproject.pipelines.MyprojectPipeline": 300,
-#}
+# import scrapy-mongodb
+
+ITEM_PIPELINES = {
+    "cricket.pipelines.ValidationPipeline": 300,
+   "cricket.pipelines.MongoPipeline": 800,
+    # "scrapy_mongodb.MongoDBPipeline": 800,
+}
+
+# MONGODB_URI = "mongodb://localhost:27017"
+# MONGODB_DATABASE = "cricket"
+# MONGODB_COLLECTION = "items"
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html

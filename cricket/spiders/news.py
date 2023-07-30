@@ -95,6 +95,7 @@ class NewsSpider(scrapy.Spider):
         トップページのトピックス一覧から個々のトピックスへのリンクを抜き出して表示する。
         """
         item = Cricket()
+        item['URL'] = response.request.url
         item['linked_information'] = response.xpath('//a/@href').extract()
         item['article_body'] = response.css('span::text').extract()
 
@@ -105,6 +106,7 @@ class NewsSpider(scrapy.Spider):
         トップページのトピックス一覧から個々のトピックスへのリンクを抜き出して表示する。
         """
         item = Cricket()
+        item['URL'] = response.request.url
         item['nickname'] = response.css('p#pfofileNickname::text').extract()
         item['description'] = response.css('p#pfofileDescription::text').extract()
 

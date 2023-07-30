@@ -13,5 +13,6 @@ class Cricket(scrapy.Item):
 
     linked_information = scrapy.Field()
     article_body = scrapy.Field()
+    URL = scrapy.Field()
     nickname = scrapy.Field()
     description = scrapy.Field()
